@@ -1,23 +1,55 @@
-import _ from 'lodash';
-import { readFileSync } from 'fs';
 import path from 'path';
+import fs from 'fs';
+import _ from 'lodash';
 
+const readFile = (filepath) => {
+  const fullPath = path.resolve( filepath);
+  const data = fs.readFileSync(fullPath, 'utf-8').toString();
+  return data;
+};
+
+const sortedKeys = (obj1, obj2) => {
+  const keys1 = _.keys(obj1);
+  const keys2 = _.keys(obj2);
+  const unionKeys = _.union(keys1, keys2);
+  const sortKeys = _.sortBy(unionKeys);
+  return sortKeys;
+};
 
 const genDiff = (filepath1, filepath2) =>{
-    const readFile = (filepath) => {
-        const fullPath = path.resolve(filepath, process.cwd()); 
-        const data = readFileSync(fullPath, 'utf-8').toString();
-        return data;
-      }
+
 const data1 = readFile(filepath1);
 const data2 = readFile(filepath2);
 
-const parsedData = JSON.parse(data);
+const dataParse1 = JSON.parse(data1);
+const dataParse2 = JSON.parse(data2);
 
-const dataParse1 = parsedData(data1);
-const dataParse2 = parsedData(data2);
+const key1 = sortedKeys(dataParse1);
+const key2 = sortedKeys(dataParse2);
 
+const allKeys = [...key1, ...key2];
 
+let diff = {};
 
+for (const keys of allKeys) {
+  switch(true) {
+case  _.has(key1, keys) && !_.has(key2, keys):
+   diff[`- ${keys}`] = key1[keys];
+   break;
+case !_.has(key1, keys) && _.has(key2, keys):
+   diff[`+ ${keys}`] = key2[keys];
+break;
+case dataParse1[keys] === dataParse2[keys]:
+  diff[`  ${keys}`] = dataParse1[keys];
+  break;
+case dataParse1[keys] !== dataParse2[keys]:
+  diff[`- ${keys}`] = dataParse1[keys];
+  diff[`+ ${keys}`] = dataParse2[keys];
+  break;
+  default:
+    break;
+  }
 }
+return diff;
+};
 export default genDiff;
