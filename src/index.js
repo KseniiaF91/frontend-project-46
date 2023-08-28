@@ -3,8 +3,8 @@ import fs from 'fs';
 import _ from 'lodash';
 
 const readFile = (filepath) => {
-  const fullPath = path.resolve( filepath);
-  const data = fs.readFileSync(fullPath, 'utf-8').toString();
+  const fullPath = path.resolve('__fixtures__', filepath);
+  const data = fs.readFileSync(fullPath).toString();
   return data;
 };
 
@@ -33,23 +33,23 @@ let diff = {};
 
 for (const keys of allKeys) {
   switch(true) {
-case  _.has(key1, keys) && !_.has(key2, keys):
-   diff[`- ${keys}`] = key1[keys];
+case  !key1.includes(keys):
+   diff[`+ ${keys}`] = dataParse2[keys];
    break;
-case !_.has(key1, keys) && _.has(key2, keys):
-   diff[`+ ${keys}`] = key2[keys];
+case !key2.includes(keys):
+   diff[`- ${keys}`] = dataParse1[keys];
 break;
 case dataParse1[keys] === dataParse2[keys]:
   diff[`  ${keys}`] = dataParse1[keys];
   break;
-case dataParse1[keys] !== dataParse2[keys]:
-  diff[`- ${keys}`] = dataParse1[keys];
-  diff[`+ ${keys}`] = dataParse2[keys];
-  break;
+  case dataParse1[keys] !== dataParse2[keys]:
+    diff[`- ${keys}`] = dataParse1[keys];
+    diff[`+ ${keys}`] = dataParse2[keys];
+    break;
   default:
     break;
   }
 }
 return diff;
-};
+}
 export default genDiff;
