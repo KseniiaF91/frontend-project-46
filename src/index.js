@@ -1,4 +1,5 @@
 import path from 'path';
+import process from 'process';
 import fs from 'fs';
 import _ from 'lodash';
 
