@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 import { program } from 'commander';
 import genDiff from '../src/index.js';
 
@@ -12,7 +11,8 @@ program
   .helpOption('-h, --help', 'output usage information')
   .option('-f, --format <type>', 'output format')
   .action((filepath1, filepath2) => {
-    const result = genDiff(filepath1, filepath2, program.opts().format);
+    const options = program.opts().format;
+    const result = genDiff(filepath1, filepath2, options);
     console.log(result);
   });
 

@@ -10,3 +10,6 @@
 ### Test coverage: 
 <a href="https://codeclimate.com/github/KseniiaF91/frontend-project-46/test_coverage"><img src="https://api.codeclimate.com/v1/badges/d2517d759b2ae2b8b06e/test_coverage" /></a>
 
+## Asciinema
+### Background information
+<a href="https://asciinema.org/a/rGyLK4LdvHcUgRq8k9GNsGde1" target="_blank"><img src="https://asciinema.org/a/rGyLK4LdvHcUgRq8k9GNsGde1.svg" /></a>
