@@ -13,3 +13,6 @@
 ## Asciinema
 ### Background information
 <a href="https://asciinema.org/a/rGyLK4LdvHcUgRq8k9GNsGde1" target="_blank"><img src="https://asciinema.org/a/rGyLK4LdvHcUgRq8k9GNsGde1.svg" /></a>
+
+### Example of package operation
+<a href="https://asciinema.org/a/tVL0PcZZt9GbMIcskXpyPI2bd" target="_blank"><img src="https://asciinema.org/a/tVL0PcZZt9GbMIcskXpyPI2bd.svg" /></a>
