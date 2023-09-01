@@ -4,13 +4,13 @@ import _ from 'lodash';
 
 const readFile = (filepath) => {
   const fullPath = path.resolve('__fixtures__', filepath);
-  const data = fs.readFileSync(fullPath).toString();
+  const data = fs.readFileSync(fullPath, 'utf-8').toString();
   return data;
 };
 
-const sortedKeys = (obj1, obj2) => {
-  const keys1 = _.keys(obj1);
-  const keys2 = _.keys(obj2);
+const getSortedKeys = (file1, file2) => {
+  const keys1 = _.keys(file1);
+  const keys2 = _.keys(file2);
   const unionKeys = _.union(keys1, keys2);
   const sortKeys = _.sortBy(unionKeys);
   return sortKeys;
@@ -23,32 +23,20 @@ const genDiff = (filepath1, filepath2) => {
   const dataParse1 = JSON.parse(data1);
   const dataParse2 = JSON.parse(data2);
 
-  const key1 = sortedKeys(dataParse1);
-  const key2 = sortedKeys(dataParse2);
+  const sortKeys = getSortedKeys(dataParse1, dataParse2);
 
-  const allKeys = [...key1, ...key2];
-
-  const diff = {};
-
-  for (const keys of allKeys) {
-    switch (true) {
-      case !key1.includes(keys):
-        diff[`+ ${keys}`] = dataParse2[keys];
-        break;
-      case !key2.includes(keys):
-        diff[`- ${keys}`] = dataParse1[keys];
-        break;
-      case dataParse1[keys] === dataParse2[keys]:
-        diff[`  ${keys}`] = dataParse1[keys];
-        break;
-      case dataParse1[keys] !== dataParse2[keys]:
-        diff[`- ${keys}`] = dataParse1[keys];
-        diff[`+ ${keys}`] = dataParse2[keys];
-        break;
-      default:
-        break;
+  const result = sortKeys.map((key) => {
+    if (!data1.includes(key)) {
+      return `  + ${key}: ${dataParse2[key]}`;
     }
-  }
-  return diff;
+    if (!data2.includes(key)) {
+      return `  - ${key}: ${dataParse1[key]}`;
+    }
+    if (dataParse1[key] !== dataParse2[key]) {
+      return `  - ${key}: ${dataParse1[key]}\n  + ${key}: ${dataParse2[key]}`;
+    }
+    return `    ${key}: ${dataParse1[key]}`;
+  });
+  return `{\n${result.join('\n')} \n}`;
 };
 export default genDiff;
