@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 const readFile = (filepath) => {
   const fullPath = path.resolve('__fixtures__', filepath);
-  const data = fs.readFileSync(fullPath, 'utf-8');
+  const data = fs.readFileSync(fullPath, 'utf-8').toString();
   return data;
 };
 
@@ -37,6 +37,6 @@ const genDiff = (filepath1, filepath2) => {
     }
     return `    ${key}: ${dataParse1[key]}`;
   });
-  return `{\n${result.join('\n').toString()} \n}`;
+  return `{\n${result.join('\n')}\n}`;
 };
 export default genDiff;

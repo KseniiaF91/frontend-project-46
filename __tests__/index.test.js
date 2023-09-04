@@ -14,9 +14,9 @@ const readFile = (filepath) => fs.readFileSync(getFixturePath(filepath), 'utf-8'
 
 const files = [['filepath1.json', 'filepath2.json']];
 
-test.each(files)('gendiff for "json" format', (file1, file2) => {
+test.each(files)('comparison of "json" files', (file1, file2) => {
   const filepath1 = getFixturePath(file1);
   const filepath2 = getFixturePath(file2);
   const result = readFile('json.txt');
-  expect((gendiff(filepath1, filepath2, 'json')).trim()).toEqual(result.trim());
+  expect((gendiff(filepath1, filepath2))).toEqual(result);
 });
