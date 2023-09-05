@@ -12,7 +12,7 @@ const __dirname = dirname(__filename);
 const getFixturePath = (filepath) => path.join(__dirname, '..', '__fixtures__', filepath);
 const readFile = (filepath) => fs.readFileSync(getFixturePath(filepath), 'utf-8').toString();
 
-const files = [['filepath1.json', 'filepath2.json']];
+const files = [['filepath1.json', 'filepath2.json'], ['filepath1.yaml', 'filepath2.yaml'], ['filepath1.yml', 'filepath2.yml']];
 
 test.each(files)('comparison of "json" files', (file1, file2) => {
   const filepath1 = getFixturePath(file1);

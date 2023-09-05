@@ -16,3 +16,6 @@
 
 ### Example of package operation
 <a href="https://asciinema.org/a/tVL0PcZZt9GbMIcskXpyPI2bd" target="_blank"><img src="https://asciinema.org/a/tVL0PcZZt9GbMIcskXpyPI2bd.svg" /></a>
+
+### Example of working with 'YAML' files
+<a href="https://asciinema.org/a/vQjrC5YAK4MAjxSq48rhoT6f0" target="_blank"><img src="https://asciinema.org/a/vQjrC5YAK4MAjxSq48rhoT6f0.svg" /></a>
