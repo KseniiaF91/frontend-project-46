@@ -9,7 +9,7 @@ program
   .argument('<filepath1>')
   .argument('<filepath2>')
   .helpOption('-h, --help', 'output usage information')
-  .option('-f, --format <type>', 'output format')
+  .option('-f, --format <type>', 'output format', 'stylish')
   .action((filepath1, filepath2) => {
     const options = program.opts().format;
     const result = genDiff(filepath1, filepath2, options);

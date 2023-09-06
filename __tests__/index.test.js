@@ -14,6 +14,13 @@ const readFile = (filepath) => fs.readFileSync(getFixturePath(filepath), 'utf-8'
 
 const files = [['filepath1.json', 'filepath2.json'], ['filepath1.yaml', 'filepath2.yaml'], ['filepath1.yml', 'filepath2.yml']];
 
+test.each(files)('comparison of "stylish" files', (file1, file2) => {
+  const filepath1 = getFixturePath(file1);
+  const filepath2 = getFixturePath(file2);
+  const result = readFile('stylish.txt');
+  expect((gendiff(filepath1, filepath2))).toEqual(result);
+});
+
 test.each(files)('comparison of "json" files', (file1, file2) => {
   const filepath1 = getFixturePath(file1);
   const filepath2 = getFixturePath(file2);
