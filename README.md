@@ -19,3 +19,6 @@
 
 ### Example of working with 'YAML' files
 <a href="https://asciinema.org/a/vQjrC5YAK4MAjxSq48rhoT6f0" target="_blank"><img src="https://asciinema.org/a/vQjrC5YAK4MAjxSq48rhoT6f0.svg" /></a>
+
+### Example of working with nested objects
+<a href="https://asciinema.org/a/ioKKJGt5itkomemSBqBMwWfv0" target="_blank"><img src="https://asciinema.org/a/ioKKJGt5itkomemSBqBMwWfv0.svg" /></a>
