@@ -20,3 +20,10 @@ test.each(files)('comparison of "stylish" files', (file1, file2) => {
   const result = readFile('stylish.txt');
   expect((gendiff(filepath1, filepath2))).toEqual(result);
 });
+
+test.each(files)('comparison of "plain" files', (file1, file2) => {
+  const filepath1 = getFixturePath(file1);
+  const filepath2 = getFixturePath(file2);
+  const result = readFile('plain.txt');
+  expect((gendiff(filepath1, filepath2))).toEqual(result);
+});
