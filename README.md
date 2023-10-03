@@ -25,3 +25,6 @@
 
 ### Example of the Plain format working
 <a href="https://asciinema.org/a/TI3JBJEefAocgyh5ec2rYGv8R" target="_blank"><img src="https://asciinema.org/a/TI3JBJEefAocgyh5ec2rYGv8R.svg" /></a>
+
+### Output in JSON format
+<a href="https://asciinema.org/a/fiJCHpAIsmtxWMhlfhYJGL2mF" target="_blank"><img src="https://asciinema.org/a/fiJCHpAIsmtxWMhlfhYJGL2mF.svg" /></a>
