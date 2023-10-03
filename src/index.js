@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import parse from './parse.js';
 import compareDifference from './comparedifference.js';
-import getStylish from './formatters/stylish.js';
+import getFotmatName from './formatters/index.js';
 
 const readFile = (filepath) => {
   const fullPath = path.resolve('__fixtures__', filepath);
@@ -12,7 +12,7 @@ const readFile = (filepath) => {
 
 const getFormat = (filepath) => path.extname(filepath);
 
-const genDiff = (filepath1, filepath2, format = 'stylish') => {
+const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
   const data1 = readFile(filepath1);
   const data2 = readFile(filepath2);
 
@@ -20,6 +20,6 @@ const genDiff = (filepath1, filepath2, format = 'stylish') => {
   const dataParse2 = parse(data2, getFormat(filepath2));
 
   const diff = compareDifference(dataParse1, dataParse2);
-  return getStylish(diff);
+  return getFotmatName(diff, formatName);
 };
 export default genDiff;
