@@ -22,3 +22,6 @@
 
 ### Example of working with nested objects
 <a href="https://asciinema.org/a/ioKKJGt5itkomemSBqBMwWfv0" target="_blank"><img src="https://asciinema.org/a/ioKKJGt5itkomemSBqBMwWfv0.svg" /></a>
+
+### Example of the Plain format working
+<a href="https://asciinema.org/a/TI3JBJEefAocgyh5ec2rYGv8R" target="_blank"><img src="https://asciinema.org/a/TI3JBJEefAocgyh5ec2rYGv8R.svg" /></a>
