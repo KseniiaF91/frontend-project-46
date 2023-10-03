@@ -10,6 +10,23 @@
 ### Test coverage: 
 <a href="https://codeclimate.com/github/KseniiaF91/frontend-project-46/test_coverage"><img src="https://api.codeclimate.com/v1/badges/d2517d759b2ae2b8b06e/test_coverage" /></a>
 
+## Difference generator
+```
+Program that determines the differences between two data structures. 
+- supports formats: json, yaml, yml;
+- generates a report in the form of plai, stylish and json.
+```
+## System Requirements
+```
+Node.js - v18.17.1
+GNU Make - 4.3
+```
+## Setup
+```
+git clone https://github.com/KseniiaF91/frontend-project-46.git
+cd frontend-project-46
+make install
+```
 ## Asciinema
 ### Background information
 <a href="https://asciinema.org/a/rGyLK4LdvHcUgRq8k9GNsGde1" target="_blank"><img src="https://asciinema.org/a/rGyLK4LdvHcUgRq8k9GNsGde1.svg" /></a>

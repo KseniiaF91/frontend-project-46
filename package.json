@@ -1,7 +1,7 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "difference calculator",
+  "description": "Difference generator",
   "type": "module",
   "main": "src/index.js",
   "bin": {
