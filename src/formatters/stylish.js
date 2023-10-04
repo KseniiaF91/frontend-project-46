@@ -1,50 +1,53 @@
 import _ from 'lodash';
 
-const stringify = (data, depth, replacer) => {
+const getIndent = (depth, replacer = ' ', spacesCount = 4) => replacer.repeat((depth * spacesCount) - 2);
+const getBrackeIndent = (depth, replacer = ' ', spacesCount = 4) => replacer.repeat((depth * spacesCount) - spacesCount);
+
+const stringify = (data, depth = 1) => {
   if (!_.isObject(data)) {
     return `${data}`;
   }
 
-  const indentForKey = replacer.repeat(depth + 1);
-  const indentForBracket = replacer.repeat(depth);
-  const lines = Object.entries(data)
-    .map(([key, value]) => `${indentForKey}${key}: ${stringify(value, depth + 1, replacer)}`);
+  const indentForKey = getIndent(depth);
+  const indentForBracket = getBrackeIndent(depth);
+  const currentValue = Object.entries(data);
+  const lines = currentValue.map(([key, value]) => `${indentForKey}  ${key}: ${stringify(value, depth + 1)}`);
 
   return ['{', ...lines, `${indentForBracket}}`].join('\n');
 };
 
-const sign = {
+const signs = {
   added: '+',
   deleted: '-',
   unchanged: ' ',
 };
 
-const getStylish = (diff, replacer = '    ') => {
-  const iter = (tree, depth) => tree.map((node) => {
-    const indent = replacer.repeat(depth);
-    const indentForSign = indent.slice(2);
+const getStylishTree = (tree) => {
+  const iter = (currentValue, depth = 1) => currentValue.flatMap((node) => {
+    const indent = getIndent(depth);
+    const bracketIndent = getBrackeIndent(depth + 1);
 
-    const makeLine = (value, mark) => `${indentForSign}${mark} ${node.key}: ${stringify(value, depth, replacer)}`;
+    const makeLine = (sign, value) => `${indent}${sign} ${node.key}: ${stringify(value, depth + 1)}`;
 
     switch (node.status) {
       case 'added':
-        return makeLine(node.value, sign.added);
+        return makeLine(signs.added, node.value);
       case 'deleted':
-        return makeLine(node.value, sign.deleted);
+        return makeLine(signs.deleted, node.value);
       case 'unchanged':
-        return makeLine(node.value, sign.unchanged);
+        return makeLine(signs.unchanged, node.value);
       case 'changed':
-        return [`${makeLine(node.value1, sign.deleted)}`,
-          `${makeLine(node.value2, sign.added)}`].join('\n');
+        return [`${makeLine(signs.deleted, node.value1)}`,
+          `${makeLine(signs.added, node.value2)}`].join('\n');
       case 'nested':
-        return `${indent}${node.key}: ${['{', ...iter(node.value, depth + 1), `${indent}}`].join('\n')}`;
+        return `${indent}  ${node.key}: ${['{', ...iter(node.value, depth + 1), `${bracketIndent}}`].join('\n')}`;
       default:
         throw new Error(`Type: ${node.status} is undefined`);
     }
   });
 
-  const stylishDiff = iter(diff, 1);
-  return ['{', ...stylishDiff, '}'].join('\n');
+  const stylishTree = iter(tree);
+  return ['{', ...stylishTree, '}'].join('\n');
 };
 
-export default getStylish;
+export default getStylishTree;

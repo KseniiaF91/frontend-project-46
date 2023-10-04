@@ -1,11 +1,11 @@
-import getStylish from './stylish.js';
+import getStylishTree from './stylish.js';
 import getPlain from './plain.js';
 import getJson from './json.js';
 
 const getFotmatName = (data, formatName) => {
   switch (formatName) {
     case 'stylish':
-      return getStylish(data);
+      return getStylishTree(data);
     case 'plain':
       return getPlain(data);
     case 'json':
