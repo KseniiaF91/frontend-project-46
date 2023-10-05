@@ -1,7 +1,7 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "Difference generator. Program that determines the differences between two data structures. Supports formats: json, yaml, yml.",
+  "description": "Difference generator.",
   "type": "module",
   "main": "src/index.js",
   "bin": {
